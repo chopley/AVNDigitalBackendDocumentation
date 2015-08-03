@@ -1,0 +1,30 @@
+Tested with receiver on 24/07/2015
+
+Used the following setup-
+
+Megatron used aftre upgrading the RAM and the Parallel port.
+USername user
+PWD 4vnu$er (i.e. avnuser)
+
+1PPS connected from GPS rubidium to the ROACH Sync input
+Power level injected through the Receiver at -87dBm, 6.782GHz
+
+First check the wideband spectrometer mode...
+python tut3_katadc carina 
+
+Next switch to the narrowband mode.
+
+python avnSpectrometerDisplayBroad.py -t 10 -a 50 -e -c 102 carina
+-t 10 sets the level of ADC attenuation (5 dB)
+-a 50 sets the number of snaps to integrate (about 130 ms worth)
+-e plots the adjacent channels on the same scales
+-c 102 selects the 102nd coarse channel for the centre fine FFT, 160 MHz lies here
+
+Discovered that the frequency setting was wrong on the Valon
+
+import logging
+import corr
+
+
+lh=corr.log_handlers.DebugLogHandler()
+
